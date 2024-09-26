@@ -1,0 +1,72 @@
+package com.example.intentsapp;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    public Button btnClick;
+    public EditText edtName;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //INTENTS
+        //Intents - communication bet. components
+
+        //Types of Intents
+        // -- Explicit - communication bet. activities
+        btnClick = findViewById(R.id.btnClick);
+        edtName = findViewById(R.id.edtName);
+        btnClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //gotToSecondActivity(edtName.getText().toString());
+                shareData(edtName.getText().toString());
+            }
+        });
+
+        // -- Implicit - communication of app to external apps
+        Button btnWeb = findViewById(R.id.btnWeb);
+        btnWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUrl();
+            }
+        });
+    }
+
+    public void shareData(String data) {
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+
+        //Additional Info
+        i.putExtra(Intent.EXTRA_SUBJECT, "This is a Sample Email");
+        i.putExtra(Intent.EXTRA_TEXT, "Hello World, " + data + "!!!");
+
+        startActivity(Intent.createChooser(i, "Choose a Platform"));
+    }
+
+    public void gotToSecondActivity(String data) {
+        Intent i = new Intent(getApplicationContext(), SecondActivity.class);
+        i.putExtra("name", data);
+        startActivity(i);
+    }
+
+    public void openUrl() {
+        Uri webpage = Uri.parse("https://www.youtube.com/watch?v=-ggQuxlebJw");
+
+        Intent i = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(i);
+    }
+}

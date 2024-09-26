@@ -1,0 +1,77 @@
+package com.example.sandbox2;
+
+import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //runs when opening the app
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toast.makeText(this, "this is onCreate()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        //runs when Activity is visible but no user interaction
+        super.onStart();
+
+        Toast.makeText(this, "this is onStart()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        //runs when Activity is visible and ready for User Interaction
+        super.onResume();
+
+        Toast.makeText(this, "this is onResume()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        //runs when Activity loses focus
+        super.onPause();
+
+        Toast.makeText(this, "this is onPause()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        //runs when Activity no longer visible
+        super.onStop();
+
+        Toast.makeText(this, "this is onStop()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        //runs when Activity is started after being stopped
+        super.onRestart();
+
+        Toast.makeText(this, "this is onRestart()"
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        //runs when Activity is being destroyed
+        super.onDestroy();
+
+        Toast.makeText(this, "this is onDestroy()"
+                , Toast.LENGTH_SHORT).show();
+    }
+}
